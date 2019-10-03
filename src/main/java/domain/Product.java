@@ -3,11 +3,22 @@ package domain;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Product {
+public class Product extends ID {
     private String name;
     private Double cost;
     private String manufacturer;
     private Date dateOfManufacture;
+
+    public Product(Long id, String name, Double cost, String manufacturer, Date dateOfManufacture) {
+        super(id);
+        this.name = name;
+        this.cost = cost;
+        this.manufacturer = manufacturer;
+        this.dateOfManufacture = dateOfManufacture;
+    }
+
+    public Product() {
+    }
 
     public String getName() {
         return name;

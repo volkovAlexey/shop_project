@@ -3,13 +3,27 @@ package domain;
 import java.util.List;
 import java.util.Objects;
 
-public class Shop {
+public class Shop extends ID {
     private String name;
     private String phoneNumber;
     private TypeOfShop type;
     private Integer numberOfCashDesk;
     private Boolean deliverable;
     private List<Product> products;
+
+    public Shop(Long id, String name, String phoneNumber, TypeOfShop type, Integer numberOfCashDesk,
+                Boolean deliverable, List<Product> products) {
+        super(id);
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.type = type;
+        this.numberOfCashDesk = numberOfCashDesk;
+        this.deliverable = deliverable;
+        this.products = products;
+    }
+
+    public Shop() {
+    }
 
     public String getName() {
         return name;
