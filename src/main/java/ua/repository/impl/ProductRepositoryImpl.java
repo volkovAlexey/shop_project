@@ -1,12 +1,12 @@
-package repository.impl;
+package ua.repository.impl;
 
-import domain.Product;
+import ua.domain.Product;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import repository.ProductRepository;
+import ua.repository.ProductRepository;
 
 import java.sql.PreparedStatement;
 import java.util.List;

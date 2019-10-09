@@ -1,4 +1,4 @@
-package domain;
+package ua.domain;
 
 import java.sql.Date;
 import java.util.Objects;

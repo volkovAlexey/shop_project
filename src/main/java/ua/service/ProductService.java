@@ -1,6 +1,6 @@
-package service;
+package ua.service;
 
-import domain.Product;
+import ua.domain.Product;
 
 import java.util.List;
 

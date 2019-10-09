@@ -1,4 +1,4 @@
-package controller;
+package ua.controller;
 
 public class ProductController {
 }

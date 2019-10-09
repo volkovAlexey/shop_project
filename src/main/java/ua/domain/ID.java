@@ -1,4 +1,4 @@
-package domain;
+package ua.domain;
 
 public class ID {
     protected Long id;

@@ -1,13 +1,13 @@
-package repository.impl;
+package ua.repository.impl;
 
-import domain.Shop;
+import ua.domain.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import repository.ShopRepository;
+import ua.repository.ShopRepository;
 
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -40,7 +40,7 @@ public class ShopRepositoryImpl implements ShopRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO cats(name, phone_number, type, number_of_cash_desk, deliverable)" +
+                    .prepareStatement("INSERT INTO shops (name, phone_number, type, number_of_cash_desk, deliverable)" +
                             " VALUES (?, ?, ?, ?, ?)", new String[]{"id"});
             ps.setString(1, shop.getName());
             ps.setString(2, shop.getPhoneNumber());

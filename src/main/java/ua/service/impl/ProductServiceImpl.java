@@ -1,9 +1,9 @@
-package service.impl;
+package ua.service.impl;
 
-import domain.Product;
+import ua.domain.Product;
 import org.springframework.stereotype.Service;
-import repository.ProductRepository;
-import service.ProductService;
+import ua.repository.ProductRepository;
+import ua.service.ProductService;
 
 import java.util.List;
 

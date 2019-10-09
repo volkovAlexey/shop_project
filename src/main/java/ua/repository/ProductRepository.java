@@ -1,6 +1,6 @@
-package repository;
+package ua.repository;
 
-import domain.Product;
+import ua.domain.Product;
 
 import java.util.List;
 
