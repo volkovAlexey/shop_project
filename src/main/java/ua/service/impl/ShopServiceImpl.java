@@ -2,17 +2,22 @@ package ua.service.impl;
 
 import ua.domain.Shop;
 import org.springframework.stereotype.Service;
+import ua.domain.TypeOfShop;
+import ua.repository.ProductRepository;
 import ua.repository.ShopRepository;
 import ua.service.ShopService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
+    private final ProductRepository productRepository;
 
-    public ShopServiceImpl(ShopRepository shopRepository) {
+    public ShopServiceImpl(ShopRepository shopRepository, ProductRepository productRepository) {
         this.shopRepository = shopRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -27,6 +32,8 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public void delete(Long id) {
+        getEntry(id);
+        productRepository.deleteAllByParentID(id);
         shopRepository.delete(id);
     }
 
@@ -41,9 +48,13 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<String> searchByFilter() {
-        List<Shop> shops = getAll();
-//        return shops.stream().filter(Shop shop -> shop.)
-        return null;
+    public List<String> getGroceryShopNumbers(int numberOfCashDesk) {
+        return getAll().stream().filter(shop -> shop.getDeliverable()
+                && shop.getNumberOfCashDesk() == numberOfCashDesk
+                && shop.getType().equals(TypeOfShop.GROCERY))
+                .map(Shop::getPhoneNumber)
+//              error - cannot infer functional interface type
+//                .sorted((Shop o1,Shop o2) -> o1.getPhoneNumber().compareTo(o2.getPhoneNumber()))
+                .collect(Collectors.toList());
     }
 }

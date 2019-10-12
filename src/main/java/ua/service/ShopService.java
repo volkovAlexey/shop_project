@@ -4,7 +4,7 @@ import ua.domain.Shop;
 
 import java.util.List;
 
-public interface ShopService {
+public interface ShopService extends FilterShopService {
     List<Shop> getAll();
 
     Shop getEntry(Long id);
@@ -14,6 +14,4 @@ public interface ShopService {
     Shop addEntry(Shop shop);
 
     Shop update(Long id, Shop shop);
-
-    List<String> searchByFilter();
 }
