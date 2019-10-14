@@ -28,7 +28,7 @@ public class ProductController {
         return productService.getEntry(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Product createProduct(@RequestBody Product product) {
         return productService.addEntry(product);
@@ -40,9 +40,9 @@ public class ProductController {
         productService.delete(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product updateProduct(Long id, Product product) {
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
         return productService.update(id, product);
     }
 }

@@ -7,6 +7,7 @@ import ua.repository.ProductRepository;
 import ua.repository.ShopRepository;
 import ua.service.ShopService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,8 +54,7 @@ public class ShopServiceImpl implements ShopService {
                 && shop.getNumberOfCashDesk() == numberOfCashDesk
                 && shop.getType().equals(TypeOfShop.GROCERY))
                 .map(Shop::getPhoneNumber)
-//              error - cannot infer functional interface type
-//                .sorted((Shop o1,Shop o2) -> o1.getPhoneNumber().compareTo(o2.getPhoneNumber()))
+                .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
     }
 }

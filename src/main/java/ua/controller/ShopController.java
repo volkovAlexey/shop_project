@@ -28,7 +28,7 @@ public class ShopController {
         return shopService.getEntry(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Shop createShop(@RequestBody Shop shop) {
         return shopService.addEntry(shop);
@@ -40,9 +40,9 @@ public class ShopController {
         shopService.delete(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Shop updateShop(Long id, Shop shop) {
+    public Shop updateShop(@PathVariable Long id,@RequestBody Shop shop) {
         return shopService.update(id, shop);
     }
 }
