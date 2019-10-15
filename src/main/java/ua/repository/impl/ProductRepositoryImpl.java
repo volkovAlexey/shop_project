@@ -62,4 +62,9 @@ public class ProductRepositoryImpl implements ProductRepository {
                 product.getDateOfManufacture(), id);
         return getOne(id);
     }
+
+    @Override
+    public void deleteAllByParentID(Long parentID) {
+        jdbcTemplate.update("DELETE * FROM products WHERE shops_id = ?", parentID);
+    }
 }

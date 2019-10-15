@@ -2,7 +2,7 @@ CREATE TABLE shops (
   id                  SERIAL NOT NULL CONSTRAINT shop_key PRIMARY KEY,
   name                VARCHAR(20),
   phone_number        VARCHAR(20),
-  --   type
+  type                VARCHAR(20),
   number_of_cash_desk INT,
   deliverable         BOOLEAN
 );
@@ -12,5 +12,7 @@ CREATE TABLE products (
   name                VARCHAR(20),
   cost                FLOAT,
   manufacturer        VARCHAR(25),
-  date_of_manufacture DATE
+  date_of_manufacture DATE,
+  shop_id BIGINT NOT NULL,
+  CONSTRAINT fk_shops_products_id FOREIGN KEY (shop_id) REFERENCES shops (id)
 );
