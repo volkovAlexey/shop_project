@@ -30,8 +30,8 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createProduct(@RequestBody Product product) {
-        return productService.addEntry(product);
+    public Product createProduct(Long id, @RequestBody Product product) {
+        return productService.addEntry(id, product);
     }
 
     @DeleteMapping(value = "/{id}")
