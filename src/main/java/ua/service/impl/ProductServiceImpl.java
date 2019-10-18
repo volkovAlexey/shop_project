@@ -1,13 +1,17 @@
 package ua.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import ua.domain.Product;
 import org.springframework.stereotype.Service;
+import ua.exceptions.DataNotFoundException;
 import ua.repository.ProductRepository;
 import ua.service.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+//@Transactional
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
@@ -22,7 +26,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getEntry(Long id) {
-        return productRepository.getOne(id);
+        return Optional.ofNullable(productRepository.getOne(id))
+                .orElseThrow(() -> new DataNotFoundException("Cannot found product by id" + id));
     }
 
     @Override
@@ -31,8 +36,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product addEntry(Product product) {
-        return productRepository.insert(product);
+    public Product addEntry(Long id, Product product) {
+        return productRepository.insert(id, product);
     }
 
     @Override

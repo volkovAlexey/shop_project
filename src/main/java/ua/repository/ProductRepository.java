@@ -1,20 +1,13 @@
 package ua.repository;
 
 import ua.domain.Product;
+import ua.repository.base.BasicRepository;
+import ua.repository.base.ChildRepository;
 
 import java.util.List;
 
-public interface ProductRepository {
-
-    List<Product> findAll();
-
-    Product getOne(Long id);
-
-    Product insert(Product product);
-
-    void delete(Long id);
-
-    Product update(Long id, Product product);
+public interface ProductRepository extends BasicRepository<Long, Product>, ChildRepository<Long, Product> {
+    Product insert(Long id, Product product);
 
     void deleteAllByParentID(Long id);
 }

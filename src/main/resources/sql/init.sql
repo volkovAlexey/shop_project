@@ -13,6 +13,6 @@ CREATE TABLE products (
   cost                FLOAT,
   manufacturer        VARCHAR(25),
   date_of_manufacture DATE,
-  shop_id BIGINT NOT NULL,
+  shop_id             BIGINT NOT NULL,
   CONSTRAINT fk_shops_products_id FOREIGN KEY (shop_id) REFERENCES shops (id)
 );
