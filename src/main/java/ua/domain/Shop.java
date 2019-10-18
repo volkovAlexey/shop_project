@@ -2,7 +2,7 @@ package ua.domain;
 
 import java.util.List;
 
-public class Shop extends ID {
+public class Shop extends LongID {
     private String name;
     private String phoneNumber;
     private TypeOfShop type;

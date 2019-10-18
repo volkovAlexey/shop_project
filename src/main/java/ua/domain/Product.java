@@ -3,7 +3,7 @@ package ua.domain;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Product extends ID {
+public class Product extends LongID {
     private String name;
     private Double cost;
     private String manufacturer;
