@@ -1,5 +1,6 @@
 package ua.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import ua.domain.Shop;
 import org.springframework.stereotype.Service;
 import ua.domain.TypeOfShop;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
     private final ProductRepository productRepository;

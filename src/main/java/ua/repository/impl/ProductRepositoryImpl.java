@@ -6,21 +6,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ua.domain.Shop;
+import ua.repository.base.AbstractRepository;
 import ua.repository.ProductRepository;
 
 import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
-public class ProductRepositoryImpl implements ProductRepository {
+public class ProductRepositoryImpl extends AbstractRepository implements ProductRepository {
 
     private static final BeanPropertyRowMapper<Product> ROW_MAPPER =
             new BeanPropertyRowMapper<>(Product.class);
 
-    private final JdbcTemplate jdbcTemplate;
-
     public ProductRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+        super(jdbcTemplate);
     }
 
     @Override
@@ -34,16 +34,17 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Product insert(Product product) {
+    public Product insert(Long parentID, Product product) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO cats(name, cost, manufacturer, date_of_manufacture)" +
-                            " VALUES (?, ?, ?, ?)", new String[]{"id"});
+                    .prepareStatement("INSERT INTO cats(name, cost, manufacturer, date_of_manufacture, shop_id)" +
+                            " VALUES (?, ?, ?, ?, ?)", new String[]{"id"});
             ps.setString(1, product.getName());
             ps.setDouble(2, product.getCost());
             ps.setString(3, product.getManufacturer());
             ps.setDate(4, product.getDateOfManufacture());
+            ps.setLong(5, parentID);
             return ps;
         }, keyHolder);
         long productId = keyHolder.getKey().longValue();
