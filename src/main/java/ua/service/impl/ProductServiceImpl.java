@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-//@Transactional
+@Transactional
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
