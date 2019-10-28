@@ -54,7 +54,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<String> getGroceryShopNumbers(int numberOfCashDesk) {
+    public List<String> getGroceryShopPhoneNumbers(int numberOfCashDesk) {
         return getAll().stream().filter(shop -> shop.getDeliverable()
                 && shop.getNumberOfCashDesk() == numberOfCashDesk
                 && shop.getType().equals(TypeOfShop.GROCERY))
