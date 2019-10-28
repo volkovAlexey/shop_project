@@ -28,10 +28,10 @@ public class ProductController {
         return productService.getEntry(id);
     }
 
-    @PostMapping
+    @PostMapping(value = "/{parentID}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createProduct(Long id, @RequestBody Product product) {
-        return productService.addEntry(id, product);
+    public Product createProduct(@PathVariable Long parentID, @RequestBody Product product) {
+        return productService.addEntry(parentID, product);
     }
 
     @DeleteMapping(value = "/{id}")

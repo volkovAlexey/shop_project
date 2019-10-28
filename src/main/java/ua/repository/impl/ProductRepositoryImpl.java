@@ -38,7 +38,7 @@ public class ProductRepositoryImpl extends AbstractRepository implements Product
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO cats(name, cost, manufacturer, date_of_manufacture, shop_id)" +
+                    .prepareStatement("INSERT INTO products(name, cost, manufacturer, date_of_manufacture, shop_id)" +
                             " VALUES (?, ?, ?, ?, ?)", new String[]{"id"});
             ps.setString(1, product.getName());
             ps.setDouble(2, product.getCost());
@@ -53,7 +53,7 @@ public class ProductRepositoryImpl extends AbstractRepository implements Product
 
     @Override
     public void delete(Long id) {
-        jdbcTemplate.update("DELETE * FROM products WHERE id = ?", id);
+        jdbcTemplate.update("DELETE FROM products WHERE id = ?", id);
     }
 
     @Override
@@ -66,6 +66,6 @@ public class ProductRepositoryImpl extends AbstractRepository implements Product
 
     @Override
     public void deleteAllByParentID(Long parentID) {
-        jdbcTemplate.update("DELETE * FROM products WHERE shops_id = ?", parentID);
+        jdbcTemplate.update("DELETE FROM products WHERE shop_id = ?", parentID);
     }
 }

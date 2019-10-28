@@ -2,13 +2,13 @@ package ua.repository.impl;
 
 import ua.domain.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ua.repository.base.AbstractRepository;
 import ua.repository.ShopRepository;
+import ua.repository.mappers.ShopRowMapper;
 
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -16,8 +16,7 @@ import java.util.List;
 @Repository
 public class ShopRepositoryImpl extends AbstractRepository implements ShopRepository {
 
-    private static final BeanPropertyRowMapper<Shop> ROW_MAPPER =
-            new BeanPropertyRowMapper<>(Shop.class);
+    private static final ShopRowMapper ROW_MAPPER = new ShopRowMapper();
 
     @Autowired
     public ShopRepositoryImpl(JdbcTemplate jdbcTemplate) {
@@ -54,13 +53,13 @@ public class ShopRepositoryImpl extends AbstractRepository implements ShopReposi
 
     @Override
     public void delete(Long id) {
-        jdbcTemplate.update("DELETE * FROM shops WHERE id = ?", id);
+        jdbcTemplate.update("DELETE FROM shops WHERE id = ?", id);
     }
 
     @Override
     public Shop update(Long id, Shop shop) {
         jdbcTemplate.update("UPDATE shops SET name = ?, phone_number = ?, type = ?, number_of_cash_desk = ?, " +
-                        "deliverable = ? WHERE id = ?", shop.getName(), shop.getPhoneNumber(), shop.getType(),
+                        "deliverable = ? WHERE id = ?", shop.getName(), shop.getPhoneNumber(), shop.getType().name(),
                 shop.getNumberOfCashDesk(), shop.getDeliverable(), id);
         return getOne(id);
     }
