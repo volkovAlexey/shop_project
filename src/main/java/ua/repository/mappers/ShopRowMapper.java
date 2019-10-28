@@ -12,12 +12,12 @@ public class ShopRowMapper implements RowMapper<Shop> {
     @Override
     public Shop mapRow(ResultSet rs, int rowNum) throws SQLException {
         Shop shop = new Shop();
-        shop.setId(rs.getLong(1));
-        shop.setName(rs.getString(2));
-        shop.setPhoneNumber(rs.getString(3));
-        shop.setType(convertToEnum(rs.getString(4)));
-        shop.setNumberOfCashDesk(rs.getInt(5));
-        shop.setDeliverable(rs.getBoolean(6));
+        shop.setId(rs.getLong("id"));
+        shop.setName(rs.getString("name"));
+        shop.setPhoneNumber(rs.getString("phone_number"));
+        shop.setType(convertToEnum(rs.getString("type")));
+        shop.setNumberOfCashDesk(rs.getInt("number_of_cash_desk"));
+        shop.setDeliverable(rs.getBoolean("deliverable"));
         return shop;
     }
 
