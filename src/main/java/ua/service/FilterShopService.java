@@ -4,5 +4,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface FilterShopService {
-    List<String> getGroceryShopNumbers(int numberOfCashDesk);
+    List<String> getGroceryShopPhoneNumbers(int numberOfCashDesk);
 }

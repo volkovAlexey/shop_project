@@ -17,6 +17,13 @@ public class Product extends LongID {
         this.dateOfManufacture = dateOfManufacture;
     }
 
+    public Product(String name, Double cost, String manufacturer, Date dateOfManufacture) {
+        this.name = name;
+        this.cost = cost;
+        this.manufacturer = manufacturer;
+        this.dateOfManufacture = dateOfManufacture;
+    }
+
     public Product() {
     }
 

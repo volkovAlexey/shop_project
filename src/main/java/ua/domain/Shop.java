@@ -11,14 +11,22 @@ public class Shop extends LongID {
     private List<Product> products;
 
     public Shop(Long id, String name, String phoneNumber, TypeOfShop type, Integer numberOfCashDesk,
-                Boolean deliverable, List<Product> products) {
+                Boolean deliverable) {
         super(id);
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.type = type;
         this.numberOfCashDesk = numberOfCashDesk;
         this.deliverable = deliverable;
-        this.products = products;
+    }
+
+    public Shop(String name, String phoneNumber, TypeOfShop type, Integer numberOfCashDesk,
+                Boolean deliverable) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.type = type;
+        this.numberOfCashDesk = numberOfCashDesk;
+        this.deliverable = deliverable;
     }
 
     public Shop() {

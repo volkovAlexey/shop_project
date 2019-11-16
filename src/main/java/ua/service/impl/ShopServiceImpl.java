@@ -4,12 +4,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.domain.Shop;
 import org.springframework.stereotype.Service;
 import ua.domain.TypeOfShop;
+import ua.exceptions.DataNotFoundException;
 import ua.repository.ProductRepository;
 import ua.repository.ShopRepository;
 import ua.service.ShopService;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +32,8 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Shop getEntry(Long id) {
-        return shopRepository.getOne(id);
+        return Optional.ofNullable(shopRepository.getOne(id))
+                .orElseThrow(()-> new DataNotFoundException("Cannot find shop whith id " + id));
     }
 
     @Override
@@ -51,7 +54,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<String> getGroceryShopNumbers(int numberOfCashDesk) {
+    public List<String> getGroceryShopPhoneNumbers(int numberOfCashDesk) {
         return getAll().stream().filter(shop -> shop.getDeliverable()
                 && shop.getNumberOfCashDesk() == numberOfCashDesk
                 && shop.getType().equals(TypeOfShop.GROCERY))
